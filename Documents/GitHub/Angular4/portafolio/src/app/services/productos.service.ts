@@ -5,19 +5,20 @@ import { Http } from "@angular/http";
 export class ProductosService {
 
   productos:any[] = [];
-  cargando_productos:boolean = true;
+  cargando:boolean = true;
 
   constructor(public http: Http) {
     this.cargar_productos();
   }
 
   public cargar_productos(){
-    this.cargando_productos = true;
+    this.cargando = true;
     this.http.get("https://pagina-web-9e5ba.firebaseio.com/productos_idx.json")
       .subscribe( res => {
-        //console.log(res.json());
-        this.productos = res.json();
-        this.cargando_productos = false;
+        //setTimeout( ()=>{
+          this.productos = res.json();
+          this.cargando = false;
+        //},1500);
       });
   }
 }
